@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CrackerMarket</title>
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <script ENGINE="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+<h6 id="categoryIdInfo" hidden>{categoryId}</h6>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Crackermarket</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/shop">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Add product</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Smartphones</a></li>
+                                    <li><a class="dropdown-item" href="/shop/category/laptops">Laptops</a></li>
+                                    <li><a class="dropdown-item" href="#">TV</a></li>
+                                    <li><a class="dropdown-item" href="#">Media</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Sale</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Service centres</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Delivery</a>
+                            </li>
+                            <li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/personal">Personal</a>
+                            </li>
+                            <li>
+                                <a class="nav-link active" aria-current="page" href="#">Contacts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {#if isLogged}
+                <a href="/logout"><button class="btn btn-primary  login">Logout</button></a>
+                {/if}
+                {#if !isLogged}
+                <a href="/login"><button class="btn btn-primary login">Login</button></a>
+                {/if}
+
+                {#if isAdmin}
+                <a href="/shop/admin"><button class="btn btn-primary login">Admins</button></a>
+                {/if}
+            </nav>
+
+
+
+            <h3>{CategoryName}</h3>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../assets/images/laptop/msi.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../assets/images/laptop/hp.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../assets/images/laptop/acer.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<main>
+
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="dataContainer">
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<script>
+    $(document).ready(function () {
+        loadProducts()
+    });
+
+
+    function loadProducts() {
+        let categoryId = $("#categoryIdInfo").text()
+        let URL = 'http://localhost:8080/shop/products?category=' + categoryId;
+        let dataContainer = $("#dataContainer");
+        $.getJSON(URL, function (products) {
+            $(products).each(function (i, product) {
+                dataContainer.append(' <div class="col">' +
+                    '                    <div class="card shadow-sm">' +
+                    '                       <img src="../../' + product.imageLink + '" class="goodImage" alt="'+product.name + '">'+
+                    '                        <div class="card-body">' +
+                    '                            <p class="card-text">'+product.description+'</p>' +
+                    '                            <div class="d-flex justify-content-between align-items-center">' +
+                    '                                <div class="btn-group">' +
+                    '                                    <button type="button" class="btn btn-sm btn-outline-secondary addToCart" itemid="'+ product.id +'">Add to cart</button>' +
+                    '                                    <button type="button" class="btn btn-sm btn-outline-secondary view">View</button>' +
+                    '                                </div>' +
+                    '                                <small class="text-muted">Available: '+ product.amount+'</small>' +
+                    '                            </div>' +
+                    '                        </div>' +
+                    '                    </div>' +
+                    '                </div>');
+            });
+            $('.addToCart').on('click', function () {
+                let product = $(this).attr('itemid');
+                addProductToCart(product);
+            });
+
+        });
+    }
+    
+    function addProductToCart(product) {
+        alert(product);
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/shop/cart/addProduct?product="+product,
+            data: json,
+            contentType: "application/json",
+            dataType: 'json',
+            statusCode: {
+                409: function () {
+                    alert("Order with name already exists");
+                    $("#result").hide();
+                },
+                200: function (data) {
+                    let result = "Order with number: " + data.number + " was created at ";
+                    for(let i = 2; i >= 0; i --) {
+                        let j = data.date[i];
+                        if(j < 10) {
+                            j = "0" + data.date[i];
+                        }
+                        result += j + ".";
+                    }
+                    $("#result").text(result).show();
+                }
+            }
+        });
+    }
+</script>
+</body>
+
+</html>
