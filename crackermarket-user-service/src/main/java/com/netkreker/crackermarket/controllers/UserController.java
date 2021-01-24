@@ -10,11 +10,12 @@ import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/user")
 @Transactional
-@NoCache
+//@NoCache
 public class UserController {
 
 
@@ -75,5 +76,10 @@ public class UserController {
         }
     }
 
+    @Path("/info")
+    @GET
+    public Response getUsrInfo(@QueryParam("userId") String userId) {
+       return Response.ok(User.findById(userId)).build();
+    }
 
 }

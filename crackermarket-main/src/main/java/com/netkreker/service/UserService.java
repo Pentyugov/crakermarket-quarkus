@@ -5,9 +5,11 @@ import com.netkreker.model.user.Status;
 import com.netkreker.model.user.User;
 import io.quarkus.security.identity.SecurityIdentity;
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.jboss.resteasy.annotations.cache.NoCache;
 
 import java.util.UUID;
 
+//@NoCache
 public class UserService {
     public static User createUserFromToken(JsonWebToken jsonWebToken, SecurityIdentity identity) {
         User user = new User();

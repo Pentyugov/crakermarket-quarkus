@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 @Singleton
 @Path("/user")
 @RegisterRestClient(configKey="UserClient")
-@NoCache
+//@NoCache
 public interface UserClient {
 
     @Path("/id/{id}")

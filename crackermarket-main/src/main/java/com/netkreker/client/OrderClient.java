@@ -1,6 +1,7 @@
 package com.netkreker.client;
 
 import com.netkreker.model.order.Order;
+import com.netkreker.model.order.OrderDetails;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.jboss.resteasy.annotations.cache.NoCache;
 
@@ -13,7 +14,6 @@ import java.util.List;
 @Singleton
 @Path("/order")
 @RegisterRestClient(configKey="OrderClient")
-@NoCache
 public interface OrderClient {
 
     @Path("/create")
@@ -23,4 +23,8 @@ public interface OrderClient {
     @Path("/findByUserId")
     @GET
     List<Order> getOrdersByUserId(@HeaderParam(HttpHeaders.AUTHORIZATION) String Authorization, @QueryParam("userId") String userId);
+
+    @Path("/new")
+    @POST
+    Response newOrder(OrderDetails orderDetails);
 }

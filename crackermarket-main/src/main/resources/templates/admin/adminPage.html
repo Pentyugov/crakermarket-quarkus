@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../assets/css/style.css" rel="stylesheet"/>
     <script ENGINE="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <style>
-        select {
-            width: 100px;
-        }
-        button.login{
-            margin: 10px;
-        }
+        /*select {*/
+        /*    width: 100px;*/
+        /*}*/
+        /*button.login{*/
+        /*    margin: 10px;*/
+        /*}*/
 
     </style>
 </head>
@@ -40,7 +41,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#">Smartphones</a></li>
-                                    <li><a class="dropdown-item" href="#">Laptops</a></li>
+                                    <li><a class="dropdown-item" href="/shop/category/laptops">Laptops</a></li>
                                     <li><a class="dropdown-item" href="#">TV</a></li>
                                     <li><a class="dropdown-item" href="#">Media</a></li>
                                 </ul>
@@ -77,50 +78,77 @@
                 {/if}
             </nav>
 
-<table id="optionsTable" class="table">
-    <tr>
-        <td>
-        <label>Users</label>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="home" aria-selected="true">Orders</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="users-tab" data-bs-toggle="tab" href="#users" role="tab" aria-controls="profile" aria-selected="false">Users</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="others-tab" data-bs-toggle="tab" href="#others" role="tab" aria-controls="home" aria-selected="true">Others</a>
+                </li>
+            </ul>
 
-            <label for="statusSelect" >Status</label>
-            <select id="statusSelect"  class="select">
-                <option value="all">All</option>
-                <option value="active">Active</option>
-                <option value="not_active">Not active</option>
-                <option value="deleted">Deleted</option>
-            </select>
+            <div class="tab-content" id="myTabContent">
 
-            <label for="roleSelect">Role</label>
-            <select id="roleSelect"  class="select">
-                <option value="all">All</option>
-                <option value="admin">Admin</option>
-                <option value="simple_user">Simple user</option>
-            </select>
-        </td>
-    </tr>
-</table>
+                <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="home-tab">
+                    orders
+                </div>
 
-<table id="usersTable" class="table table-hover"></table>
+                <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="profile-tab">
+                    <table id="optionsTable" class="table">
+                        <tr>
+                            <td>
+                                <label>Users</label>
+
+                                <label for="statusSelect" >Status</label>
+                                <select id="statusSelect"  class="select">
+                                    <option value="all">All</option>
+                                    <option value="active">Active</option>
+                                    <option value="not_active">Not active</option>
+                                    <option value="deleted">Deleted</option>
+                                </select>
+
+                                <label for="roleSelect">Role</label>
+                                <select id="roleSelect"  class="select">
+                                    <option value="all">All</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="simple_user">Simple user</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table id="usersTable" class="table table-hover"></table>
 
 
-<table id="ordersTable" class="table table-hover">
-    <tr>
-        <th>Order ID</th>
-        <th>Number</th>
-        <th>Name</th>
-        <th>Date</th>
-    </tr>
-</table>
+                    <table id="ordersTable" class="table table-hover">
+<!--                        <tr>-->
+<!--                            <th>Order ID</th>-->
+<!--                            <th>Number</th>-->
+<!--                            <th>Name</th>-->
+<!--                            <th>Date</th>-->
+<!--                        </tr>-->
+                    </table>
 
+                </div>
+
+                <div class="tab-pane fade" id="others" role="tabpanel" aria-labelledby="contact-tab">
+                    others
+                </div>
+            </div>
         </div>
-    </div>
+
 </div>
+
+
+
 
 <script>
     $(document).ready(function() {
         getUserByParameters();
     });
-
 
     $("#statusSelect").change(function () {
         getUserByParameters();
@@ -129,6 +157,8 @@
     $("#roleSelect").change(function () {
         getUserByParameters();
     });
+
+
 
 
     function getUserByParameters() {
@@ -185,5 +215,6 @@
     }
 </script>
 
+</div>
 </body>
 </html>

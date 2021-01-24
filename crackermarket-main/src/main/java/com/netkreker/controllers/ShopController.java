@@ -1,11 +1,9 @@
 package com.netkreker.controllers;
 
-import com.netkreker.client.CategoryClient;
-import com.netkreker.client.OrderClient;
-import com.netkreker.client.ProductClient;
-import com.netkreker.client.UserClient;
+import com.netkreker.client.*;
 import com.netkreker.model.Category;
 import com.netkreker.model.order.Order;
+import com.netkreker.model.order.OrderDetails;
 import com.netkreker.model.user.Role;
 import com.netkreker.model.user.User;
 import com.netkreker.service.TokenUtil;
@@ -17,7 +15,6 @@ import io.quarkus.security.identity.SecurityIdentity;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.jboss.resteasy.annotations.providers.jaxb.Stylesheet;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -27,7 +24,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/shop")
-@NoCache
+//@NoCache
 public class ShopController {
     private Boolean isLogged = false;
     private Boolean isAdmin = false;
@@ -38,6 +35,8 @@ public class ShopController {
     Template adminPage;
     @ResourcePath("shop/categoryPage.html")
     Template categoryPage;
+    @ResourcePath("shop/cart.html")
+    Template cartPage;
 
     @Inject
     @RestClient
@@ -54,6 +53,10 @@ public class ShopController {
     @Inject
     @RestClient
     ProductClient productClient;
+
+    @Inject
+    @RestClient
+    CartClient cartClient;
 
     @Inject
     JsonWebToken jsonWebToken;
@@ -77,6 +80,13 @@ public class ShopController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(Order order) {
         return orderClient.create(order, jsonWebToken.getSubject());
+    }
+
+    @Path("/order/new")
+    @POST
+    public Response newOrder(OrderDetails orderDetails) {
+        Response response = orderClient.newOrder(orderDetails);
+        return response;
     }
 
     @Path("/admin")
@@ -115,8 +125,33 @@ public class ShopController {
     @Path("/products")
     @GET
     @Produces(MediaType.TEXT_HTML)
+    @Authenticated
     public Response getProductsFromCategory(@QueryParam("category") String category) {
         return productClient.getProductsFromCategory(category);
+    }
+
+    @Path("/cart/addProduct")
+    @GET
+    public Response addProductToCart(@QueryParam("product") String product) {
+        return cartClient.addProductToCart(product, jsonWebToken.getSubject());
+    }
+
+    @Path("/cart/info")
+    @GET
+    public Response getCartInfo() {
+        return cartClient.getCartInfo(jsonWebToken.getSubject());
+    }
+
+    @Path("/cart")
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    @Authenticated
+    public TemplateInstance getCartPage(){
+        isLogged = !identity.getPrincipal().getName().isEmpty();
+        isAdmin = identity.hasRole(Role.ROLE_ADMIN);
+        return cartPage.data("userId", jsonWebToken.getSubject())
+                           .data("isAdmin", isAdmin)
+                           .data("isLogged", isLogged);
     }
 
 }

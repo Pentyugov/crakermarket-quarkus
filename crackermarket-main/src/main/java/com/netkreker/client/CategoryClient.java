@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 @Singleton
 @Path("/category")
 @RegisterRestClient(configKey="OrderClient")
-@NoCache
+//@NoCache
 public interface CategoryClient {
 
     @Path("{category}")

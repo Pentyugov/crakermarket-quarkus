@@ -7,13 +7,13 @@ import org.jboss.resteasy.annotations.cache.NoCache;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.UUID;
 
 @Singleton
 @Path("/user")
 @RegisterRestClient(configKey="UserClient")
-@NoCache
 public interface UserClient {
 
     @Path("/id/{id}")
@@ -40,5 +40,8 @@ public interface UserClient {
     @GET
     User findUserByUsername(@HeaderParam(HttpHeaders.AUTHORIZATION) String Authorization, @PathParam("username") String username);
 
+    @Path("/info")
+    @GET
+    Response getUserInfo(@QueryParam("userId") String userId);
 
 }

@@ -3,6 +3,7 @@ package com.netkreker.crackermarket.model.product;
 import com.netkreker.crackermarket.model.category.Category;
 import com.netkreker.crackermarket.model.core.BaseEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Product extends BaseEntity {
@@ -10,6 +11,15 @@ public class Product extends BaseEntity {
     private String description;
     private int amount;
     private String imageLink;
+    private Double price;
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
     public String getImageLink() {
         return imageLink;
@@ -29,6 +39,10 @@ public class Product extends BaseEntity {
 
     public String getDescription() {
         return description;
+    }
+
+    public static Product findByProductId(String id) {
+        return find("_id", id).firstResult();
     }
 
     public void setDescription(String description) {

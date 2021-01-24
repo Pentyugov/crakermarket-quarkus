@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 @Path("/category")
-@NoCache
+//@NoCache
 @Transactional
 public class CategoryController {
 

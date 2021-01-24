@@ -32,7 +32,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Path("/")
-@NoCache
+//@NoCache
 public class MainController {
 
     private Boolean isLogged = false;
@@ -122,12 +122,12 @@ public class MainController {
                 .data("isLogged", isLogged);
     }
 
-    @Path("/logout")
-    @GET
-    @Produces(MediaType.TEXT_HTML)
-    public Response logout() throws URISyntaxException {
-        return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("http://localhost:8080")).build();
-    }
+//    @Path("/logout")
+//    @GET
+//    @Produces(MediaType.TEXT_HTML)
+//    public Response logout() throws URISyntaxException {
+//        return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("http://localhost:8080")).build();
+//    }
 
 
 }

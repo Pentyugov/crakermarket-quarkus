@@ -11,12 +11,16 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 @Singleton
-@Path("/products")
-@RegisterRestClient(configKey="ProductClient")
+@Path("/cart")
+@RegisterRestClient(configKey="CartClient")
 //@NoCache
-public interface ProductClient {
+public interface CartClient {
 
-    @Path("/")
+    @Path("/addProduct")
     @GET
-    Response getProductsFromCategory(@QueryParam("category") String category);
+    Response addProductToCart(@QueryParam("product") String productId, @QueryParam("user") String userId);
+
+    @Path("/info")
+    @GET
+    Response getCartInfo(@QueryParam("user") String userId);
 }

@@ -75,7 +75,7 @@ public class User extends BaseEntity {
     }
 
     public static User findById(String id) {
-        return find("id", id).firstResult();
+        return find("_id", id).firstResult();
     }
 
     public static User findByUsername(String username) {

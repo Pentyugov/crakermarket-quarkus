@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CrackerMarket</title>
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <script ENGINE="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Crackermarket</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/shop">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Add product</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Smartphones</a></li>
+                                    <li><a class="dropdown-item" href="/shop/category/laptops">Laptops</a></li>
+                                    <li><a class="dropdown-item" href="#">TV</a></li>
+                                    <li><a class="dropdown-item" href="#">Media</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Sale</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Service centres</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Delivery</a>
+                            </li>
+                            <li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/personal">Personal</a>
+                            </li>
+                            <li>
+                                <a class="nav-link active" aria-current="page" href="#">Contacts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {#if isLogged}
+                <a href="/logout"><button class="btn btn-primary  login">Logout</button></a>
+                {/if}
+                {#if !isLogged}
+                <a href="/login"><button class="btn btn-primary login">Login</button></a>
+                {/if}
+
+                {#if isAdmin}
+                <a href="/shop/admin"><button class="btn btn-primary login">Admins</button></a>
+                {/if}
+                <a href="/shop/admin"><button class="btn btn-secondary">Cart</button></a>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Checkout form</h2>
+            <p class="lead">Please verify your data</p>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge bg-secondary rounded-pill" id="productCount">3</span>
+                </h4>
+                <ul class="list-group mb-3" id="productList">
+                </ul>
+
+<!--                <form class="card p-2">-->
+                    <div class="input-group">
+                        <button class="btn btn-primary" id="createOrderBtn">Create order</button>
+                    </div>
+<!--                </form>-->
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Customer details</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required disabled>
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Last name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required disabled>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="username" class="form-label">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text">@</span>
+                                <input type="text" class="form-control" id="username" placeholder="Username" required disabled>
+                                <div class="invalid-feedback">
+                                    Your username is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com" disabled>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for shipping updates.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                            <div class="invalid-feedback">
+                                Please enter your shipping address.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h4 class="mb-3">Payment</h4>
+
+                    <div class="my-3">
+                        <div class="form-check">
+                            <input id="receipt" name="paymentMethod" type="radio" class="form-check-input" checked required value="receipt">
+                            <label class="form-check-label" for="receipt">Upon receipt</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="online" name="paymentMethod" type="radio" class="form-check-input" required value="online">
+                            <label class="form-check-label" for="online">Online</label>
+                        </div>
+                    </div>
+
+                    <div class="row gy-3" id="cardDetails">
+                        <div class="col-md-6">
+                            <label for="cc-name" class="form-label">Name on card</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <small class="text-muted">Full name as displayed on card</small>
+                            <div class="invalid-feedback">
+                                Name on card is required
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cc-number" class="form-label">Credit card number</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Credit card number is required
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Expiration</label>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Expiration date required
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Security code required
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2020-2021 Crackermarket</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
+
+
+
+
+<script>
+
+    let totalPrice = 0.0;
+    let cartId = null;
+    let userId = null;
+    let address = null;
+    let paymentMethod = 'receipt';
+    let createOrderBtn = $('#createOrderBtn');
+
+    createOrderBtn.click(function () {
+        createOrder();
+    });
+
+    $(document).ready(function () {
+        getCartInfo();
+        setPaymentMethod();
+    });
+
+
+    function getCartInfo() {
+        let URL = 'http://localhost:8080/shop/cart/info';
+        $.get(URL, function (cart) {
+            cartId = cart.id;
+            userId = cart.user.id;
+            fillCartInfo(cart.products);
+            getUserInfo();
+        });
+    }
+    
+    
+    function fillCartInfo(products) {
+        $('#productCount').text(products.length);
+        $(products).each(function (i, product) {
+            $('#productList').append('<li class="list-group-item d-flex justify-content-between lh-sm">' +
+                '                        <div>' +
+                '                            <h6 class="my-0">' + product.name + '</h6>' +
+                '                            <small class="text-muted">' + product.description + '</small>' +
+                '                        </div>' +
+                '                        <span class="text-muted">$' + product.price + '</span>' +
+                '                    </li>');
+            totalPrice += product.price;
+        });
+
+        $('#productList').append('<li class="list-group-item d-flex justify-content-between">' +
+            '                        <span>Total (USD)</span>' +
+            '                        <strong>$' + totalPrice+'</strong>' +
+            '                    </li>');
+    }
+
+    function getUserInfo() {
+        let URL = 'http://localhost:8080/user/info?userId=' + userId;
+        $.get(URL, function (user) {
+            if(user.firstName != null) {
+                $('#firstName').val(user.firstName);
+            }
+            if(user.lastName != null) {
+                $('#lastName').val(user.lastName);
+            }
+            if(user.username != null) {
+                $('#username').val(user.username);
+            }
+            if(user.email) {
+                $('#email').val();
+            }
+            if(user.address != null) {
+                $('#address').val(user.address);
+                address = user.address;
+            }
+
+        });
+    }
+
+    function setPaymentMethod() {
+        let cardDetails = $('#cardDetails');
+        cardDetails.hide();
+        $('input[type=radio][name=paymentMethod]').change(function() {
+            if (this.value === 'online') {
+                paymentMethod = 'online';
+                cardDetails.show();
+            }
+            else if (this.value === 'receipt') {
+                paymentMethod = 'receipt';
+                cardDetails.hide();
+            }
+        });
+    }
+
+    function createOrder() {
+        let URL = 'http://localhost:8080/shop/order/new'
+        let userDetails = {
+            "userId" : userId,
+            "cartId" : cartId,
+            "address" : address,
+            "paymentMethod" : paymentMethod,
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: URL,
+            data: JSON.stringify(userDetails),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (order) {
+                console.log(order);
+                $(document).on('hide.bs.modal','#exampleModal', function () {
+                    let url = 'http://localhost:8080/';
+                    $(location).prop('href', url);
+                });
+                $('#orderNumber').text('Order № ' + order.number + ' was created!')
+                let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+                myModal.show();
+            }
+        });
+    }
+
+
+
+</script>
+</body>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Congratulations!</h5>
+            </div>
+            <div class="modal-body">
+                <span class="text-muted" id="orderNumber"></span>
+            </div>
+            <div class="modal-footer">
+                <a href="/"> <button type="button" class="btn btn-primary">To main page</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
